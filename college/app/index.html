@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-Cn"  ng-app="halo" ng-class="$root.device+' '+$root.browser">
+<head>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title ng-bind="$root.pageTitle">幻熊学院</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="//at.alicdn.com/t/font_1462864738_160609.css" rel="stylesheet">
+    <!-- build:css Public/College/css/main.css -->
+    <link rel='stylesheet' href="Public/College/css/lib/vender/weiui/weui.css">
+    <link href="Public/College/css/main.css" rel="stylesheet">
+    <link href="Public/College/css/second.css" rel="stylesheet">
+    <!-- endbuild -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?87cf727433eb22d359b5147f0acd8ec1";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+<!--dfdfgdfg-->
+<div class="page-wrapper" ui-view autoscroll="true"></div>
+<!--<div halo-ad  ></div>-->
+<div halo-app-download ></div>
+
+<script src="http://7mnn4s.com1.z0.glb.clouddn.com/static/common/js/hb.modernizr.pack.min.1.0.0.js"></script>
+<script src="http://7mnn4s.com2.z0.glb.qiniucdn.com/static/common/js/hb.jquery.angular.pack.min.1.0.0.js"></script>
+
+<script src="//cdn.bootcss.com/moment.js/2.13.0/moment.min.js"></script>
+<script src="//cdn.bootcss.com/moment.js/2.13.0/locale/zh-cn.js"></script>
+
+
+
+<!-- build:js Public/College/js/main.js -->
+<script src="Public/College/js/hb.vKeyboard.js"></script>
+<script src="Public/College/js/config.js"></script>
+<script src="Public/College/js/config.dist.js"></script>
+
+<script src="Public/College/js/lib/jquery-lazyload/jquery.lazyload.js"></script>
+
+<script src="Public/College/js/lib/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+<script src="Public/College/js/lib/oclazyload/dist/ocLazyLoad.js"></script>
+<script src="Public/College/js/app.js"></script>
+<script src="Public/College/js/app.config.js"></script>
+<script src="Public/College/js/app.run.js"></script>
+<script src="Public/College/js/app.services.js"></script>
+<script src="Public/College/js/app.directives.js"></script>
+<script src="Public/College/js/app.controllers.js"></script>
+<!-- endbuild -->
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+<div class="page-wrapper-inner lecture-detail-wrapper" >
+    <div college-header header-title="{{vm.data.video.title}}" header-left="'back'" header-right="'login'" >
+    </div>
+
+
+
+    <div  ng-show="vm.allDataReceived" >
+        <div class="video-wrapper">
+            <div class="video-box">
+                <!--<video class="video-js vjs-16-9 vjs-default-skin vjs-skin-halo" halo-video-->
+                       <!--creation-date="vm.data.video.url"-->
+                       <!--controls -->
+                       <!--poster="{{vm.data.video.cover_url}}" webkit-playsinline preload="none"-->
+                <!--&gt;-->
+                <video class="video-js vjs-16-9 vjs-default-skin vjs-skin-halo" halo-video
+                       creation-date="vm.data.video.url"
+                       controls
+                       webkit-playsinline preload="none"
+					   poster="http://7xopel.com2.z0.glb.qiniucdn.com/College/images/college_cover3.jpg?imageView/2/w/750"
+                >
+                    <source ng-src="{{vm.data.video.url}}" type='video/mp4'>
+                    <!--<source src="{{vm.data.video.url}}" type='video/mp4'>-->
+                    <p class="vjs-no-js">您的浏览器版本太低，无法播放</p>
+                </video>
+                <div class="fake-bt-wrapper" ng-if="!vm.data.video.url">
+                    <div class="fake-poster">
+                        <img class="img" img-lazyload creation-date="vm.data.video.cover_url"
+                             ng-src="{{$root.imgPreload}}"
+                             data-original="http://7xopel.com2.z0.glb.qiniucdn.com/College/images/college_cover3.jpg?imageView/2/w/750" alt="">
+                        <!--<img class="img" img-lazyload creation-date="vm.data.video.cover_url"-->
+                             <!--ng-src="{{$root.imgPreload}}"-->
+                             <!--data-original="{{vm.data.video.cover_url}}" alt="">-->
+                    </div>
+                    <div class="video-js vjs-16-9 vjs-default-skin vjs-skin-halo">
+
+                        <div ng-click="vm.getVideoUrl()" class="vjs-big-play-button"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="video-info">
+                <div class="title">
+                    {{vm.data.video.title}}
+                </div>
+                <div class="clearfix">
+                    <div class="pull-left des">
+                        {{vm.data.guests.name}} | {{vm.data.guests.position}}
+                    </div>
+                    <div class="pull-right play-times">
+                        播放：{{vm.data.video.views}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lecturer-wrapper">
+            <img class="photo" img-lazyload creation-date="vm.data.guests.avatar_url"
+                 ng-src="{{$root.imgPreload}}"
+                 data-original="{{vm.data.guests.avatar_url}}" alt="">
+            <div class="info">
+                <h4 class="title">{{vm.data.guests.name}}</h4>
+                <div class="title">{{vm.data.guests.content}}</div>
+            </div>
+        </div>
+        <form class="comments-wrapper" novalidate ng-submit="vm.postComment(vm.rateData)">
+            <div class="stars">
+                <uib-rating ng-model="vm.rateData.score"
+                            max="5"
+                            state-on="'haloIcon haloIcon-star on'"
+                            state-off="'haloIcon haloIcon-star off'"
+                ></uib-rating>
+            </div>
+           <textarea class="form-control text"
+                     ng-model="vm.rateData.content"
+                     placeholder="条理清楚，思路清晰。非常向往婚礼行业。观看视频给了我很大帮助，很有借鉴意义。"></textarea>
+            <button type="submit" class="btn btn-primary btn-lg btn-block bt">提交评价</button>
+        </form>
+        <div class="comments-list-wrapper">
+            <ul class="list-unstyled comments">
+                <li class="comment" ng-repeat="comment in vm.commentList">
+                    <div class="info">
+                        <div class="name-and-rate">
+                            <div class="name">{{comment.username}}</div>
+                            <div class="rate">
+                                <uib-rating
+                                        ng-model="comment.score"
+                                        readonly="true"
+                                        state-on="'haloIcon haloIcon-star on'"
+                                        state-off="'haloIcon haloIcon-star off'"
+                                ></uib-rating>
+                            </div>
+                        </div>
+                        <div class="time">
+                            {{comment.create_time}}
+                        </div>
+                    </div>
+                    <div class="content">
+                        {{comment.content}}
+                    </div>
+                </li>
+            </ul>
+            <div class="get-more">
+                <a ng-show="!vm.gettingMorecommentList&&vm.commentList.length>0&&vm.commentList.length<vm.commentListTotal"
+                   ng-click="vm.getNextCommentList()">加载更多</a>
+                <!--<span ng-show="vm.commentList.length==0" >暂无评论</span>-->
+                <!--<span ng-show="vm.commentList.length==vm.commentListTotal&&vm.commentList.length>0">没有更多内容了</span>-->
+                <span ng-show="vm.gettingMorecommentList"><i class="fa fa-spinner fa-spin"></i></span>
+
+            </div>
+
+        </div>
+        <div class="recommend-list-wrapper" ng-show="vm.recommendCommentList.length>0">
+            <h4 class="title">为你推荐</h4>
+            <div class="videos-container">
+                <ul class="list-unstyled videos">
+                    <li class="video" ui-sref="lectureDetail({id:video.id})"
+                        ng-repeat="video in vm.recommendCommentList">
+                        <div class="photo-box">
+
+                            <div class="photo-box__box">
+                                <img class="photo"
+
+                                       img-lazyload creation-date="video.cover_url"
+                                       ng-src="{{$root.imgPreload}}"
+                                       data-original="{{video.cover_url}}"
+                                       alt="">
+                                <div class="times">{{video.times}}</div>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <div class="title">{{video.title}}</div>
+                            <div class="content">
+                                <div class="person">
+                                    {{video.guests.title}} | {{video.guests.position}}
+                                </div>
+                                <div class="times">播放：{{video.views}}</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div college-footer></div>
+    </div>
+
+    <div ng-show="!vm.allDataReceived" class="page-loading">
+        <i class="fa fa-spinner fa-spin"></i>
+    </div>
+</div>

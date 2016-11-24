@@ -1,0 +1,128 @@
+<div class="page-wrapper-inner lecture-home-wrapper" >
+    <div college-header header-title="首页" header-right="'login'" header-left="'search'">
+
+    </div>
+
+    <div ng-class="{'page-hidden':!vm.allDataReceived}">
+        <div class="home-swiper-wrapper">
+            <div halo-swiper creation-date="vm.allDataReceived" ></div>
+        </div>
+
+        <div class="home-main-shortcut-wrapper">
+            <div class="home-main-shortcut">
+                <div class="st st-1" ui-sref="lectureList({alias:'qbsp'})">
+                    <div class="i i-1"></div>
+                    <div class="text">全部视频</div>
+                </div>
+                <div class="st st-2" ui-sref="lectureList({alias:'kcyj'})">
+                    <div class="i i-2"></div>
+                    <div class="text">课程演讲</div>
+                </div>
+                <div class="st st-3" ui-sref="lectureList({alias:'jbcf'})">
+                    <div class="i i-3"></div>
+                    <div class="text">嘉宾采访</div>
+                </div>
+                <div class="st st-4" ui-sref="lectureList({alias:'chbs'})">
+                    <div class="i i-4"></div>
+                    <div class="text">策划比赛</div>
+                </div>
+                <div class="st st-5" ui-sref="lectureList({alias:'qthd'})">
+                    <div class="i i-5"></div>
+                    <div class="text">其他活动</div>
+                </div>
+            </div>
+            <div class="home-main-shortcut">
+                <div class="st st-6" ui-sref="lectureList({alias:'gll'})">
+                    <div class="i i-6"></div>
+                    <div class="text">管理类</div>
+                </div>
+                <div class="st st-7" ui-sref="lectureList({alias:'chl'})">
+                    <div class="i i-7"></div>
+                    <div class="text">策划类</div>
+                </div>
+                <div class="st st-8" ui-sref="lectureList({alias:'yxl'})">
+                    <div class="i i-8"></div>
+                    <div class="text">营销类</div>
+                </div>
+                <div class="st st-9" ui-sref="lectureList({alias:'zcl'})">
+                    <div class="i i-9"></div>
+                    <div class="text">主持类</div>
+                </div>
+                <div class="st st-10" ui-sref="lectureList({alias:'qtl'})">
+                    <div class="i i-10"></div>
+                    <div class="text">其他类</div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="home-hot-list-wrapper" ng-show="hot.list.length>0" ng-repeat="hot in vm.hotList">
+            <div class="videos-container-2">
+                <div class="head clearfix">
+                    <div class="title">
+                        <i class="bar"></i>
+                        <span class="text">{{hot.listTitle}}</span>
+                    </div>
+                    <div class="more" ui-sref="lectureList({alias:hot.alias})">
+
+                        <span ng-show="hot.alias=='zxsx'" class="text">全部{{hot.listTotal}}个视频</span>
+                        <span ng-show="hot.alias=='zdbf'" class="text em">本月新增{{vm.statistics.month}}个视频</span>
+                        <span ng-show="hot.alias=='zdtj'" class="text em">本周新增{{vm.statistics.week}}个视频</span>
+
+                        <i class="fa fa-angle-right gt" ng-class="{em:hot.alias!='zxsx'}"></i>
+                    </div>
+                </div>
+                <div class="videos-box">
+                    <ul class="list-unstyled clearfix">
+                        <li class="video" ng-repeat="video in hot.list" ui-sref="lectureDetail({id:video.id})">
+                            <div class="video-box">
+                                <img class="cover" img-lazyload creation-date="video.cover_url"
+                                       ng-src="{{$root.imgPreload}}"
+                                       data-original="{{video.cover_url}}" alt="">
+                                <div class="guest-title">{{video.guests.title}}</div>
+                                <div class="position">{{video.guests.position}}</div>
+                                <div class="times">{{video.times}}</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="home-topic-list-wrapper" ng-show="vm.allTopic.title">
+            <div class="videos-container-2">
+                <div class="head clearfix">
+                    <div class="title">
+                        <i class="bar"></i>
+                        <span class="text">{{vm.allTopic.title}}</span>
+                    </div>
+                    <div class="more" ui-sref="lectureList({alias:'jxzt'})">
+                        <span class="text">全部{{vm.allTopic.listTotal}}个视频</span>
+                        <i class="fa fa-angle-right gt"></i>
+                    </div>
+                </div>
+                <div class="topic-box">
+                    <ul class="list-unstyled">
+                        <li ng-repeat="topic in vm.topicList" class="topic" ui-sref="lectureList({alias:topic.alias})">
+                            <img class="bg" img-lazyload creation-date="topic.pic"
+                                 ng-src="{{$root.imgPreload}}"
+                                 data-original="{{topic.pic}}" alt="">
+                            <div class="info">
+                                <div class="text">
+                                    <div class="title">{{topic.title}}</div>
+                                    <div class="slug">{{topic.slug}}</div>
+                                </div>
+                                <i class="fa fa-angle-right enter"></i>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div college-footer></div>
+    </div>
+
+    <div ng-show="!vm.allDataReceived" class="page-loading">
+        <i class="fa fa-spinner fa-spin"></i>
+    </div>
+</div>

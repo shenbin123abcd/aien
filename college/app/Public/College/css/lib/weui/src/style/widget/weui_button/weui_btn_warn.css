@@ -1,0 +1,10 @@
+.weui_btn_warn {
+  background-color: #EF4F4F;
+}
+.weui_btn_warn:not(.weui_btn_disabled):visited {
+  color: #FFFFFF;
+}
+.weui_btn_warn:not(.weui_btn_disabled):active {
+  color: rgba(255, 255, 255, 0.4);
+  background-color: #C13E3E;
+}

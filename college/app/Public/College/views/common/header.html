@@ -1,0 +1,43 @@
+<div class="header">
+
+
+    <a class="head-left return" ng-if="headerLeft=='back'" back><i class="fa fa-angle-left"></i></a>
+
+
+    <a class="head-left-search"
+       ng-class="{'head-left':headerLeft=='search','head-right':headerRight=='search'}"
+       ng-if="headerLeft=='search'||headerRight=='search'"
+       ng-click="vm.showSearch=!vm.showSearch;vm.am=true" >
+        <i class="haloIcon haloIcon-glass search"></i>
+    </a>
+
+
+
+    <form class="head-search" ng-class="{am:vm.am}" ng-show="vm.showSearch"
+
+          novalidate
+          ng-submit="vm.goSearch(vm.keyword)"
+    >
+        <label class="head-search-label">
+            <input type="search" class="form-control" ng-model="vm.keyword"
+                placeholder="请输入关键字" halo-focus="vm.showSearch"
+            >
+            <i  class="haloIcon haloIcon-glass search"></i>
+            <span class="cancel" ng-click="vm.showSearch=!vm.showSearch"  ><i class="haloIcon haloIcon-times"></i></span>
+        </label>
+    </form>
+
+
+
+    <h1 class="title">{{headerTitle}}</h1>
+
+    <a class="head-right user" ng-if="headerRight=='login'">
+        <i ng-click="vm.openUserModal()" class="haloIcon haloIcon-user"></i>
+    </a>
+
+    <!--<a class="head-right user-name" ng-if="headerRight=='login'&&vm.userName"  >-->
+    <!--<span class="text" ng-click="vm.openUserModal()">{{vm.userName}}</span>-->
+    <!--</a>-->
+    <div class="custom" ng-show="!headerRight" ng-transclude></div>
+
+</div>

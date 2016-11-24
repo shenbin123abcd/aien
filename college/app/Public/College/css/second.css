@@ -1,0 +1,18 @@
+.weui_dialog_alert {
+  position: fixed;
+  z-index: 9999;
+}
+.weui_dialog_confirm {
+  position: fixed;
+  z-index: 9999;
+}
+.weui_loading_toast {
+  position: fixed;
+  z-index: 9999;
+}
+.weui_msg_toast {
+  position: fixed;
+  z-index: 9999;
+}
+
+/*# sourceMappingURL=../maps/less/second.css.map */

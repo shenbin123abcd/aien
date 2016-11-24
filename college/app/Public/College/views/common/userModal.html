@@ -1,0 +1,229 @@
+
+<div  ng-if="vm.showLayer=='登录'" >
+    <div user-modal-header close-fun="vm.cancel()" header-title="登录幻熊通行证">
+        <a class="reg" ng-click="vm.goRegister()">注册</a>
+    </div>
+    <form novalidate class="user-modal-form" ng-submit="vm.login(vm.logData)">
+        <div class="block block-center">
+            <div class="control-phone-wrapper">
+                <span class="area">+86</span>
+                <i class="bar"></i>
+                <input class="control"
+                       type="number"
+                       ng-model="vm.logData.phone"
+                       placeholder="请输入您的手机号码" >
+            </div>
+        </div>
+        <div class="block block-center">
+            <input class="control"
+                   type="password"
+                   ng-model="vm.logData.password"
+                   placeholder="请输入您的密码">
+        </div>
+        <button type="submit" class="btn btn-block btn-primary btn-lg bt">确认登录</button>
+        <div ng-click="vm.goGetResetPasswordCode()" class="get-password">忘记密码?</div>
+    </form>
+</div>
+
+
+
+<div  ng-if="vm.showLayer=='注册'" >
+    <div user-modal-header close-fun="vm.cancel()" header-title="注册幻熊通行证">
+        <a class="log" ng-click="vm.goLogin()">登录</a>
+    </div>
+    <form novalidate class="user-modal-form" ng-submit="vm.getVerifyCode(vm.regData)">
+        <!--<div class="block block-center">-->
+            <!--<input class="control invite-code"-->
+                   <!--type="text"-->
+                   <!--halo-placeholder-->
+                   <!--ng-model="vm.regData.invite_code"-->
+                   <!--placeholder="请输入您的邀请码">-->
+        <!--</div>-->
+        <div class="block block-center">
+            <div class="control-phone-wrapper">
+                <span class="area">+86</span>
+                <i class="bar"></i>
+                <input class="control"
+                       type="number"
+                       ng-model="vm.regData.phone"
+                       placeholder="请输入您的手机号码" >
+            </div>
+        </div>
+        <button type="submit" class="btn btn-block btn-primary btn-lg bt">发送验证码</button>
+    </form>
+</div>
+
+
+
+<div  ng-if="vm.showLayer=='注册信息'" >
+    <div user-modal-header close-fun="vm.cancel()" header-title="注册幻熊通行证">
+        <a class="log" ng-click="vm.goLogin()">登录</a>
+    </div>
+    <form novalidate class="user-modal-form" ng-submit="vm.register(vm.regData)">
+        <div class="block block-center">
+            <div class="control-phone-wrapper">
+                <span class="area">+86</span>
+                <i class="bar"></i>
+                <input class="control"
+                       type="number"
+                       ng-disabled="true"
+                       placeholder="{{vm.regData.phone||13811111111}}" >
+            </div>
+        </div>
+        <div class="block block-center">
+            <div class="control-verify_code-wrapper">
+                <input class="control"
+                       type="number"
+                       ng-model="vm.regData.verify_code"
+                       placeholder="请输入短讯验证码">
+                <span class="count" ng-show="vm.counting">
+                    {{vm.counting}}
+                </span>
+                <a class="recount" ng-click="vm.getVerifyCode(vm.regData)" ng-hide="vm.counting">
+                    重新发送
+                </a>
+            </div>
+        </div>
+        <div class="block block-center">
+            <input class="control"
+                   type="text"
+                   ng-model="vm.regData.username"
+                   placeholder="请输入昵称">
+        </div>
+        <div class="block block-center">
+            <input class="control"
+                   type="text"
+                   ng-model="vm.regData.city"
+                   placeholder="请输入城市">
+        </div>
+        <div class="block block-center">
+            <input class="control"
+                   type="text"
+                   ng-model="vm.regData.company"
+                   placeholder="请输入公司">
+        </div>
+        <div class="block block-center">
+            <input class="control"
+                   type="text"
+                   ng-model="vm.regData.wechat"
+                   placeholder="请输入微信号">
+        </div>
+        <div class="block block-center">
+            <input class="control"
+                   type="password"
+                   ng-model="vm.regData.password"
+                   placeholder="请输入密码">
+        </div>
+
+        <button type="submit" class="btn btn-block btn-primary btn-lg bt">注&#12288;册</button>
+    </form>
+</div>
+
+
+<div  ng-if="vm.showLayer=='获取忘记密码验证码'" >
+    <div user-modal-header close-fun="vm.cancel()" header-title="忘记密码">
+        <a class="log" ng-click="vm.goLogin()">登录</a>
+    </div>
+    <form novalidate class="user-modal-form" ng-submit="vm.getResetPasswordVerifyCode(vm.resetData)">
+        <div class="block block-center">
+            <div class="control-phone-wrapper">
+                <span class="area">+86</span>
+                <i class="bar"></i>
+                <input class="control"
+                       type="number"
+                       ng-model="vm.resetData.phone"
+                       placeholder="请输入您的手机号码" >
+            </div>
+        </div>
+        <button type="submit" class="btn btn-block btn-primary btn-lg bt">发送验证码</button>
+    </form>
+</div>
+
+
+<div  ng-if="vm.showLayer=='重置密码'" >
+    <div user-modal-header close-fun="vm.cancel()" header-title="重置密码">
+        <a class="log" ng-click="vm.goLogin()">登录</a>
+    </div>
+    <form novalidate class="user-modal-form" ng-submit="vm.resetPassword(vm.resetData)">
+        <div class="block block-center">
+            <div class="control-phone-wrapper">
+                <span class="area">+86</span>
+                <i class="bar"></i>
+                <input class="control"
+                       type="number"
+                       ng-disabled="true"
+                       placeholder="{{vm.resetData.phone||13811111111}}" >
+            </div>
+        </div>
+        <div class="block block-center">
+            <div class="control-verify_code-wrapper">
+                <input class="control"
+                       type="number"
+                       ng-model="vm.resetData.verify_code"
+                       placeholder="请输入短讯验证码">
+                <span class="count" ng-show="vm.counting">
+                    {{vm.counting}}
+                </span>
+                <a class="recount" ng-click="vm.getResetPasswordVerifyCode(vm.resetData)" ng-hide="vm.counting">
+                    重新发送
+                </a>
+            </div>
+        </div>
+
+        <div class="block block-center">
+            <input class="control"
+                   type="password"
+                   ng-model="vm.resetData.password"
+                   placeholder="请输入密码">
+        </div>
+        <div class="block block-center">
+            <input class="control"
+                   type="password"
+                   ng-model="vm.resetData.rpassword"
+                   placeholder="请再次输入密码">
+        </div>
+
+        <button type="submit" class="btn btn-block btn-primary btn-lg bt">完成</button>
+    </form>
+</div>
+
+<div  ng-if="vm.showLayer=='注销'" >
+    <div user-modal-header close-fun="vm.cancel()" header-title="注销">
+
+    </div>
+    <div class="user-modal-form" >
+        <button type="button" ng-click="vm.goChangePassword()" class="btn btn-block btn-primary btn-lg bt" >修改密码</button>
+        <button type="button" ng-click="vm.logout()" class="btn btn-block btn-primary btn-lg bt">退出登录</button>
+    </div>
+</div>
+
+<div  ng-if="vm.showLayer=='修改密码'" >
+    <div user-modal-header close-fun="vm.cancel()" header-title="修改密码">
+
+    </div>
+    <form novalidate class="user-modal-form" ng-submit="vm.changePassword(vm.changePasswordData)">
+
+
+        <div class="block block-center">
+            <input class="control"
+                   type="password"
+                   ng-model="vm.changePasswordData.password"
+                   placeholder="请输入原密码">
+        </div>
+
+        <div class="block block-center">
+            <input class="control"
+                   type="password"
+                   ng-model="vm.changePasswordData.new_password"
+                   placeholder="请输入新密码">
+        </div>
+        <div class="block block-center">
+            <input class="control"
+                   type="password"
+                   ng-model="vm.changePasswordData.rnew_password"
+                   placeholder="请重复新密码">
+        </div>
+
+        <button type="submit" class="btn btn-block btn-primary btn-lg bt">确认修改</button>
+    </form>
+</div>

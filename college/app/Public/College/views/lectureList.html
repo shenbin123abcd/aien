@@ -1,0 +1,53 @@
+<div class="page-wrapper-inner lecture-detail-wrapper"  >
+
+    <div college-header header-title="{{vm.listTitle}}"  header-left="'back'" header-right="vm.headerRight">
+
+    </div>
+    <div  ng-show="vm.allDataReceived">
+        <div class="latest-video-list-wrapper"
+             infinite-scroll='vm.getNextList()'
+             infinite-scroll-disabled='vm.gettingMoreList||vm.listCurrentPage>vm.listTotalPages'
+             infinite-scroll-immediate-check="false"
+             infinite-scroll-distance='0'>
+            <div class="videos-container">
+                <ul class="list-unstyled videos">
+                    <li class="video" ui-sref="lectureDetail({id:video.id})" ng-repeat="video in vm.list">
+
+                        <div class="photo-box">
+                            <div class="photo-box__box">
+                                <img class="photo"
+                                       img-lazyload creation-date="video.cover_url" data-original="{{video.cover_url}}"
+                                       ng-src="{{$root.imgPreload}}"
+                                       alt="">
+                                <div class="times">{{video.times}}</div>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <div class="title">{{video.title}}</div>
+                            <div class="content">
+                                <div class="person">
+                                    {{video.guests.title}} | {{video.guests.position}}
+                                </div>
+                                <div class="times">播放：{{video.views}}</div>
+                            </div>
+                        </div>
+
+
+                    </li>
+                </ul>
+                <div class="loading" ng-show='vm.gettingMoreList'><i class="fa fa-spinner fa-spin"></i></div>
+                <div class="no-more" ng-show="vm.listCurrentPage>vm.listTotalPages&&vm.list.length>0&&vm.listTotalPages>1">没有更多内容了...</div>
+                <div class="no-data" ng-show="vm.list.length==0">该分类下没有内容</div>
+            </div>
+        </div>
+
+
+        <div college-footer></div>
+    </div>
+
+
+    <div ng-show="!vm.allDataReceived" class="page-loading">
+        <i class="fa fa-spinner fa-spin"></i>
+    </div>
+</div>
+

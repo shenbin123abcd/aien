@@ -1,0 +1,83 @@
+<div class="page-live-wrapper">
+    <div ng-style="{height:$root.windowWidth*3/4}">
+        <div class="live-wraper" qcloud-live="vm.liveOpt" ></div>
+    </div>
+
+
+    <div class="tab-main">
+        <div uib-tabset active="vm.tabIndex">
+            <div index="1" uib-tab>
+                <div uib-tab-heading class="text">评论</div>
+                <div class="comments-list-wrapper-2"
+                     infinite-scroll='vm.getNextCommentList()'
+                     infinite-scroll-disabled='vm.commentDataLoading||vm.commentData.list.length==vm.commentData.total||vm.tabIndex!=1'
+                     infinite-scroll-immediate-check="false"
+                     infinite-scroll-distance='0' >
+                    <div class="loading" ng-show="vm.commentDataLoading"><i class="fa fa-spinner fa-spin"></i></div>
+                    <ul class="list-unstyled list" >
+                        <li class="cf item" ng-repeat="item in vm.commentData.list"  >
+                            <div class="img-wrapper"  ng-show="item.avatar" >
+                                <img class="img" ng-src="{{item.avatar}}">
+                            </div>
+                            <div class="info-wrapper">
+                                <div class="cf main-info">
+                                    <span class="name pull-left">{{item.username}}</span>
+                                    <span class="time pull-right">{{item.c_create_time}}</span>
+                                </div>
+                                <div class="content">{{item.contents}}</div>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <div index="2" uib-tab>
+                <div uib-tab-heading>简介</div>
+                <div class="des-list-wrapper-2"
+                     infinite-scroll='vm.getNextDes()'
+                     infinite-scroll-disabled='vm.liveDataLoading||vm.liveData.list.length==vm.liveData.total||vm.tabIndex!=2'
+                     infinite-scroll-immediate-check="false"
+                     infinite-scroll-distance='0' >
+                    <ul class="list-unstyled list">
+                        <li class="cf item" ng-repeat="item in vm.liveData.list">
+                            <div class="img-wrapper" ng-show="item.c_avatar_url">
+                                <img class="img" ng-src="{{item.c_avatar_url}}">
+                            </div>
+                            <div class="info-wrapper">
+                                <div class="info-inner">
+                                    <div class="title">{{item.headline}}</div>
+                                    <div class="des">
+                                        <span class="name">{{item.title}}</span>
+                                        <span class="position">{{item.position}}</span>
+                                    </div>
+
+                                    <div class="videos-wrapper-2">
+                                        <a class="video" ui-sref="lectureDetail({id:v.video_id})" ng-repeat="v in item.video">
+                                            <img class="cover" ng-src="{{v.c_cover_url}}" >
+                                            <i class="haloIcon haloIcon-play"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+
+                                <!--<div class="videos-wrapper">-->
+                                    <!--<div class="swiper-container videos-container" halo-swiper-live init="vm.tabIndex==2" creation-date="item.video"></div>-->
+                                <!--</div>-->
+
+                                <div class="line"></div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="loading" ng-show="vm.liveDataLoading"><i class="fa fa-spinner fa-spin"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comments-wrapper-2" fix-bottom ng-class="{focus:commentFocus}" >
+        <form class="form-control-box" ng-submit="vm.comment(vm.commentData);beBlur=true">
+            <input focus2blur="beBlur" type="text" ng-focus="commentFocus=true;" ng-blur="commentFocus=false;" class="form-control" ng-model="vm.commentData.contents">
+            <button type="submit" class="bt"><i class="haloIcon haloIcon-great"></i></button>
+        </form>
+    </div>
+</div>
